@@ -103,9 +103,9 @@
     </build>
 
     <scm>
-        <connection>scm:git:https://github.com/youssefbenhammed/DesignPatern.git</connection>
-        <developerConnection>scm:git:https://github.com/youssefbenhammed/DesignPatern.git</developerConnection>
-        <url>https://github.com/youssefbenhammed/DesignPatern.git</url>
+        <connection>scm:git:https://github.com/Nath19/GildedRoseJavaKataIboMXT2</connection>
+        <developerConnection>scm:git:https://github.com/Nath19/GildedRoseJavaKataIboMXT2</developerConnection>
+        <url>https://github.com/Nath19/GildedRoseJavaKataIboMXT2</url>
     </scm>
 
     <repositories/>
