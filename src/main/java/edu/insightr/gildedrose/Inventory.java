@@ -5,6 +5,8 @@ public class Inventory {
 
 
     private Item[] items;
+    private Updater updater = new Updater();
+
 
     public Inventory(Item[] items) {
         super();
@@ -39,6 +41,7 @@ public class Inventory {
     }
 
     public void updateQuality() {
+        /*
         for (int i = 0; i < items.length; i++) {
             if (items[i].getName() != "Aged Brie"
                     && items[i].getName() != "Backstage passes to a TAFKAL80ETC concert") {
@@ -88,6 +91,13 @@ public class Inventory {
                     }
                 }
             }
+        }
+        */
+
+        
+        for(int j =0;j<items.length;j++)
+        {
+            updater.update(items[j],items[j].getName());
         }
     }
 

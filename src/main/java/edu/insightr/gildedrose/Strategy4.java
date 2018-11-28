@@ -1,7 +1,7 @@
 package edu.insightr.gildedrose;
 
 public class Strategy4 implements  UpdateStrategy { //for normal items
-    int update(Item it)
+  public   int update(Item it)
     {
         it.setSellIn(it.getSellIn()-1);
 

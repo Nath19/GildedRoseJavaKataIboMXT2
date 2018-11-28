@@ -25,7 +25,6 @@ public class Updater {
 
             case "Backstage passes to a TAFKAL80ETC concert":
                 updateStrategy = new Strategy2();
-
                 break;
 
 
