@@ -8,6 +8,7 @@ public class AgedBrie extends Item {
         this.name = "Aged Brie";
         this.sellIn = 2;
         this.quality = 0;
+        
     }
 
 
