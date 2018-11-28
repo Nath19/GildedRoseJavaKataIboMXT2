@@ -46,6 +46,10 @@ public class Inventory {
                     if (items[i].getName() != "Sulfuras, Hand of Ragnaros") {
                         items[i].setQuality(items[i].getQuality() - 1);
                     }
+                    if (items[i].getName()=="Conjured Mana Cake")
+                    {
+                        items[i].setQuality(items[i].getQuality() - 1);
+                    }
                 }
             } else {
                 if (items[i].getQuality() < 50) {
