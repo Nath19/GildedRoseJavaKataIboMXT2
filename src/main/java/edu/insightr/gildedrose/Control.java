@@ -10,6 +10,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Button;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -39,6 +40,9 @@ public class Control implements Initializable {
     @FXML private TextField SellIn;
 
     @FXML private TextField Quality;
+
+    @FXML private Button buttonaddID;
+
 
 
 
@@ -72,12 +76,48 @@ public class Control implements Initializable {
 
 
     public void addItem(javafx.event.ActionEvent actionEvent) {
+        buttonaddID.setOnAction(event -> {
+
+            String name_value=ComboBoxID.getValue().toString();
+            int sellin_value=Integer.parseInt(SellIn.getText());
+            int quallity_value=Integer.parseInt(Quality.getText());
+
+
+            Item nouveau=new Item(name_value,sellin_value,quallity_value);
+
+            Item[] items = new Item[this.inventory.getItems().length+1];
+
+
+            int i=0;
+            while(i<this.inventory.getItems().length)
+            {
+                items[i]=this.inventory.getItems()[i];
+                i++;
+            }
+
+            items[this.inventory.getItems().length]=nouveau;
+
+            inventory=new Inventory(items);
+
+            tableView.getItems().setAll(inventory.getItems());
+            tableView.getItems();
+            tableView.refresh();
+
+
+
+
+
+        });
+
+
+
+
     }
 
     @FXML
     public void updateItem(ActionEvent actionEvent) {
 
             inventory.updateQuality();
-            tableView.refresh();
+        tableView.refresh();
     }
 }
