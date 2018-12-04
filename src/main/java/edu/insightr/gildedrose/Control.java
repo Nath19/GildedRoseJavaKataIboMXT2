@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ComboBox;
@@ -20,6 +21,8 @@ public class Control implements Initializable {
 
     private Inventory inventory=new Inventory();
 
+
+
     @FXML
     private TableView<Item> tableView;
 
@@ -28,6 +31,11 @@ public class Control implements Initializable {
     @FXML private TextField SellIn;
 
     @FXML private TextField Quality;
+
+    @FXML private PieChart pieChart;
+
+
+
 
 
 
@@ -49,6 +57,7 @@ public class Control implements Initializable {
 
         ComboBoxID.setValue("Item");
         ComboBoxID.setItems(options);
+
 
 
 
