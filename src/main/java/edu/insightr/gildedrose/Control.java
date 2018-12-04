@@ -1,5 +1,7 @@
 package edu.insightr.gildedrose;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -10,7 +12,10 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ComboBox;
 
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 
@@ -138,5 +143,32 @@ public class Control implements Initializable {
 
 
 
+    }
+
+    public void loadItems(ActionEvent actionEvent) {
+        ObjectMapper mapper = new ObjectMapper();
+
+
+        File json = new File("C:\\Users\\imad\\IdeaProjects\\GildedRoseJavaKataIboMXT2\\target\\classes\\items.json");
+        List<Item> cricketer = null;
+        try {
+            cricketer = mapper.readValue(json, new TypeReference<List<Item>>() { });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Item[] items = new Item[this.inventory.getItems().length];
+        System.out.println("Java object created from JSON String :");
+        //System.out.println(cricketer);
+        int j=0;
+        for(Item i : cricketer){
+            items[j]=i;
+            j++;
+            System.out.println(i);
+        }
+        inventory=new Inventory(items);
+        tableView.getItems().setAll(inventory.getItems());
+        tableView.getItems();
+        tableView.refresh();
+        countItems();
     }
 }
