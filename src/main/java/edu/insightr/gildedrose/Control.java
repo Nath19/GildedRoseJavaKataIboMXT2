@@ -61,7 +61,6 @@ public class Control implements Initializable {
 
 
     public void addItem(javafx.event.ActionEvent actionEvent) {
-        buttonaddID.setOnAction(event -> {
 
             String name_value=ComboBoxID.getValue().toString();
             int sellin_value=Integer.parseInt(SellIn.getText());
@@ -92,7 +91,7 @@ public class Control implements Initializable {
 
 
 
-        });
+
 
 
 

@@ -44,7 +44,7 @@
         </ComboBox>
         <TextField fx:id="SellIn" prefHeight="27.0" prefWidth="67.0" promptText="SellIn" />
         <TextField fx:id="Quality" prefHeight="27.0" prefWidth="63.0" promptText="Quality" />
-        <Button fx:id="buttonaddID" onAction="#addItem" text="Add" textFill="#3154ed" />
+        <Button onAction="#addItem" text="Add" textFill="#3154ed" />
     </HBox>
      <Button onAction="#updateItem" text="Update" textFill="#3154ed" GridPane.columnIndex="1" GridPane.rowIndex="3" />
    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="31.0" prefWidth="368.0" text="GildedRoseJavaKata" textAlignment="CENTER" textFill="#3154ed">
