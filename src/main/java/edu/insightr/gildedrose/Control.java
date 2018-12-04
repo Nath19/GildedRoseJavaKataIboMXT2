@@ -8,7 +8,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Button;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -29,8 +28,6 @@ public class Control implements Initializable {
     @FXML private TextField SellIn;
 
     @FXML private TextField Quality;
-
-    @FXML private Button buttonaddID;
 
 
 
