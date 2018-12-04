@@ -52,6 +52,7 @@
          <Font name="Arial Narrow Italic" size="37.0" />
       </font>
    </Label>
+   <Button mnemonicParsing="false" text="Load" textFill="#3154ed" GridPane.columnIndex="1" />
    <cursor>
       <Cursor fx:constant="DEFAULT" />
    </cursor>
