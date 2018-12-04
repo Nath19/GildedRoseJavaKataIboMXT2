@@ -54,7 +54,7 @@
       </font>
    </Label>
    <Button mnemonicParsing="false" text="Load" textFill="#3154ed" GridPane.columnIndex="1" />
-    <PieChart title="PieChart" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+    <PieChart fx:id="pieChart" title="PieChart" GridPane.columnIndex="2" GridPane.rowIndex="2" />
    <cursor>
       <Cursor fx:constant="DEFAULT" />
    </cursor>

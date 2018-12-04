@@ -62,6 +62,10 @@ public class Control implements Initializable {
 
 
 
+
+
+
+
     }
 
 
@@ -94,20 +98,18 @@ public class Control implements Initializable {
             tableView.refresh();
 
 
-
-
-
-
-
-
-
-
     }
+
+
+
+
+
 
     @FXML
     public void updateItem(ActionEvent actionEvent) {
 
-            inventory.updateQuality();
+        inventory.updateQuality();
         tableView.refresh();
+        int[] tab=inventory.count();
     }
 }

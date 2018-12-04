@@ -95,6 +95,54 @@ public class Inventory {
         }
     }
 
+    public int[] count()
+    {
+        int[] tab=new int[]{0,0,0,0,0,0};
+        for(int i=0;i<this.items.length;i++)
+        {
+            if (items[i].getName() == "+5 Dexterity Vest")
+            {
+                tab[0]++;
+            }
+            if(items[i].getName() == "Aged Brie")
+            {
+                tab[1]++;
+            }
+            if(items[i].getName() == "Elixir of the Mongoose")
+            {
+                tab[2]++;
+            }
+            if(items[i].getName() == "Sulfuras, Hand of Ragnaros")
+            {
+                tab[3]++;
+            }
+            if(items[i].getName() == "Backstage passes to a TAFKAL80ETC concert")
+            {
+                tab[4]++;
+            }
+            if(items[i].getName() == "Conjured Mana Cake")
+            {
+                tab[5]++;
+            }
+
+
+
+
+
+
+
+        }
+
+        for(int j=0;j<tab.length;j++)
+        {
+            System.out.print(tab[j]);
+            System.out.print(" ");
+
+        }
+        System.out.println(" ");
+        return tab;
+
+    }
 
     public static void main(String[] args) {
         Inventory inventory = new Inventory();
