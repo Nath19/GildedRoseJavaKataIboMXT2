@@ -59,15 +59,41 @@ public class Control implements Initializable {
         ComboBoxID.setItems(options);
 
 
-
-
-
-
+        int []tab = inventory.count();
+        ObservableList<PieChart.Data> pieChartData =
+                FXCollections.observableArrayList(
+                        new PieChart.Data("+5 Dexterity Vest", tab[0]),
+                        new PieChart.Data("Aged Brie", tab[1]),
+                        new PieChart.Data("Elixir of the Mongoose", tab[2]),
+                        new PieChart.Data("Sulfuras, Hand of Ragnaros", tab[3]),
+                        new PieChart.Data("Backstage passes to a TAFKAL80ETC concert", tab[4]),
+                        new PieChart.Data("Conjured Mana Cake", tab[5]));
+        pieChart.setLabelsVisible(false);
+        pieChart.setTitle("Items");
+        pieChart.setData(pieChartData);
+        pieChart.setLabelLineLength(10);
 
 
 
     }
 
+
+    public  void countItems()
+    {
+        int []tab = inventory.count();
+        ObservableList<PieChart.Data> pieChartData =
+                FXCollections.observableArrayList(
+                        new PieChart.Data("+5 Dexterity Vest", tab[0]),
+                        new PieChart.Data("Aged Brie", tab[1]),
+                        new PieChart.Data("Elixir of the Mongoose", tab[2]),
+                        new PieChart.Data("Sulfuras, Hand of Ragnaros", tab[3]),
+                        new PieChart.Data("Backstage passes to a TAFKAL80ETC concert", tab[4]),
+                        new PieChart.Data("Conjured Mana Cake", tab[5]));
+        pieChart.setLabelsVisible(false);
+        pieChart.setTitle("Items");
+        pieChart.setData(pieChartData);
+        pieChart.setLabelLineLength(10);
+    }
 
 
     public void addItem(javafx.event.ActionEvent actionEvent) {
@@ -96,11 +122,10 @@ public class Control implements Initializable {
             tableView.getItems().setAll(inventory.getItems());
             tableView.getItems();
             tableView.refresh();
+        countItems();
 
 
     }
-
-
 
 
 
@@ -110,6 +135,8 @@ public class Control implements Initializable {
 
         inventory.updateQuality();
         tableView.refresh();
-        int[] tab=inventory.count();
+
+
+
     }
 }
