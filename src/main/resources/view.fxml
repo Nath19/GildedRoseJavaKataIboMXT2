@@ -53,7 +53,7 @@
       </font>
    </Label>
    <cursor>
-      <Cursor fx:constant="W_RESIZE" />
+      <Cursor fx:constant="DEFAULT" />
    </cursor>
    <columnConstraints>
       <ColumnConstraints />
