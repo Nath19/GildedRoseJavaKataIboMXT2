@@ -11,6 +11,8 @@ import javafx.scene.chart.PieChart;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ComboBox;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
@@ -110,24 +112,24 @@ public class Control implements Initializable {
 
             Item nouveau=new Item(name_value,sellin_value,quallity_value);
 
-            Item[] items = new Item[this.inventory.getItems().length+1];
+            Item[] items = new Item[inventory.getItems().length+1];
 
 
             int i=0;
-            while(i<this.inventory.getItems().length)
+            while(i<inventory.getItems().length)
             {
-                items[i]=this.inventory.getItems()[i];
+                items[i]=inventory.getItems()[i];
                 i++;
             }
 
-            items[this.inventory.getItems().length]=nouveau;
+            items[inventory.getItems().length]=nouveau;
 
             inventory=new Inventory(items);
 
             tableView.getItems().setAll(inventory.getItems());
             tableView.getItems();
             tableView.refresh();
-        countItems();
+            countItems();
 
 
     }
@@ -146,10 +148,14 @@ public class Control implements Initializable {
     }
 
     public void loadItems(ActionEvent actionEvent) {
+        Stage stage = new Stage();
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Json File");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Json", "*.json"));
+        File json = fileChooser.showOpenDialog(stage);
+
         ObjectMapper mapper = new ObjectMapper();
-
-
-        File json = new File("C:\\Users\\imad\\IdeaProjects\\GildedRoseJavaKataIboMXT2\\target\\classes\\items.json");
         List<Item> cricketer = null;
         try {
             cricketer = mapper.readValue(json, new TypeReference<List<Item>>() { });
@@ -157,6 +163,8 @@ public class Control implements Initializable {
             e.printStackTrace();
         }
         Item[] items = new Item[this.inventory.getItems().length];
+
+
         System.out.println("Java object created from JSON String :");
         //System.out.println(cricketer);
         int j=0;
@@ -165,10 +173,14 @@ public class Control implements Initializable {
             j++;
             System.out.println(i);
         }
+
+
         inventory=new Inventory(items);
         tableView.getItems().setAll(inventory.getItems());
         tableView.getItems();
         tableView.refresh();
+
         countItems();
+        inventory.printInventory();
     }
 }
