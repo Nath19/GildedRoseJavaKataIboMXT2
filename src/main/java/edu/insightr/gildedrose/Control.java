@@ -162,8 +162,8 @@ public class Control implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Item[] items = new Item[this.inventory.getItems().length];
 
+        Item[] items = new Item[inventory.getItems().length];
 
         System.out.println("Java object created from JSON String :");
         //System.out.println(cricketer);
@@ -176,11 +176,13 @@ public class Control implements Initializable {
 
 
         inventory=new Inventory(items);
+        inventory.printInventory();
         tableView.getItems().setAll(inventory.getItems());
         tableView.getItems();
         tableView.refresh();
 
         countItems();
         inventory.printInventory();
+
     }
 }
