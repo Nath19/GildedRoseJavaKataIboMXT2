@@ -23,11 +23,17 @@ import java.util.ResourceBundle;
 
 public class Control implements Initializable {
 
+    private Inventory inventory;
 
-
-
-    private Inventory inventory=new Inventory();
-
+    //============ Used for test ============
+    private Item itemToAdd;
+    public Inventory getInventory() {
+        return inventory;
+    }
+    public Item getItemToAdd() {
+        return itemToAdd;
+    }
+    //
 
 
     @FXML
@@ -49,6 +55,7 @@ public class Control implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        inventory = new Inventory();
         ObservableList<Item> data = FXCollections.observableArrayList(inventory.getItems());
         tableView.setItems(data);
 
@@ -65,29 +72,13 @@ public class Control implements Initializable {
         ComboBoxID.setValue("Item");
         ComboBoxID.setItems(options);
 
-
-        int []tab = inventory.count();
-        ObservableList<PieChart.Data> pieChartData =
-                FXCollections.observableArrayList(
-                        new PieChart.Data("+5 Dexterity Vest", tab[0]),
-                        new PieChart.Data("Aged Brie", tab[1]),
-                        new PieChart.Data("Elixir of the Mongoose", tab[2]),
-                        new PieChart.Data("Sulfuras, Hand of Ragnaros", tab[3]),
-                        new PieChart.Data("Backstage passes to a TAFKAL80ETC concert", tab[4]),
-                        new PieChart.Data("Conjured Mana Cake", tab[5]));
-        pieChart.setLabelsVisible(false);
-        pieChart.setTitle("Items");
-        pieChart.setData(pieChartData);
-        pieChart.setLabelLineLength(10);
-
-
-
+        countItems();
     }
 
 
     public  void countItems()
     {
-        int []tab = inventory.count();
+        int[] tab = inventory.count();
         ObservableList<PieChart.Data> pieChartData =
                 FXCollections.observableArrayList(
                         new PieChart.Data("+5 Dexterity Vest", tab[0]),
@@ -103,7 +94,7 @@ public class Control implements Initializable {
     }
 
 
-    public void addItem(javafx.event.ActionEvent actionEvent) {
+    public void addItem(ActionEvent actionEvent) {
 
             String name_value=ComboBoxID.getValue().toString();
             int sellin_value=Integer.parseInt(SellIn.getText());
@@ -111,6 +102,7 @@ public class Control implements Initializable {
 
 
             Item nouveau=new Item(name_value,sellin_value,quallity_value);
+            itemToAdd = nouveau;
 
             Item[] items = new Item[inventory.getItems().length+1];
 
@@ -131,7 +123,6 @@ public class Control implements Initializable {
             tableView.refresh();
             countItems();
 
-
     }
 
 
@@ -142,8 +133,6 @@ public class Control implements Initializable {
 
         inventory.updateQuality();
         tableView.refresh();
-
-
 
     }
 
@@ -172,17 +161,15 @@ public class Control implements Initializable {
             items[j]=i;
             j++;
             System.out.println(i);
+            // Used to try to fix the get.Name issue.
+            if(i.getName() == "Sulfuras, Hand of Ragnaros") System.out.println("test");
         }
 
-
-        inventory=new Inventory(items);
-        inventory.printInventory();
+        inventory= new Inventory(items);
         tableView.getItems().setAll(inventory.getItems());
         tableView.getItems();
         tableView.refresh();
-
         countItems();
-        inventory.printInventory();
 
     }
 }
