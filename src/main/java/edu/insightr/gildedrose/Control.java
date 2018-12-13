@@ -188,7 +188,7 @@ public class Control implements Initializable {
 
     public void barcharItem(ActionEvent actionEvent) {
 
-      /*      Stage newWindow = (Stage)barchar.getScene().getWindow();
+           Stage newWindow = (Stage)barchar.getScene().getWindow();
 
         Label secondLabel = new Label("barchar.fxml");
                     StackPane secondaryLayout = new StackPane();
@@ -229,7 +229,7 @@ public class Control implements Initializable {
         stage.setScene(new Scene(root, 850, 650));
         stage.show();*/
 
-       /* XYChart.Series set1 = new XYChart.Series<>();
+   XYChart.Series set1 = new XYChart.Series<>();
 
         int[] sellInTab = new int[100];
 
@@ -259,7 +259,7 @@ public class Control implements Initializable {
         set1.getData().add(new XYChart.Data("2",2));
         set1.getData().add(new XYChart.Data("1",1));*/
 
-     //   SellIn_NbItems.getData().addAll(set1);
+        SellIn_NbItems.getData().addAll(set1);
 
 
     }
