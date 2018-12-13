@@ -14,7 +14,6 @@ public class Main extends Application {
         primaryStage.setTitle("List of Items");
         primaryStage.setScene(new Scene(root, 850, 650));
         primaryStage.show();
-
     }
     
     public static void main(String[] args) {

@@ -7,19 +7,20 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.chart.PieChart;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ComboBox;
+import javafx.scene.Parent;
+import javafx.scene.chart.*;
+import javafx.scene.control.*;
+import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-
+import javafx.fxml.FXMLLoader;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
-
+import javafx.scene.Scene;
 
 public class Control implements Initializable {
 
@@ -47,16 +48,24 @@ public class Control implements Initializable {
 
     @FXML private PieChart pieChart;
 
+    @FXML private Button barchar;
 
 
+// Barchar
+    @FXML
+    private BarChart<?,?> SellIn_NbItems;
 
+    @FXML
+    private CategoryAxis sellIn;
 
+    @FXML
+    private NumberAxis y;
 
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        inventory = new Inventory();
-        ObservableList<Item> data = FXCollections.observableArrayList(inventory.getItems());
+       inventory = new Inventory();
+       ObservableList<Item> data = FXCollections.observableArrayList(inventory.getItems());
         tableView.setItems(data);
 
         //ObservableList<String>listItem= FXCollections.observableArrayList("");
@@ -73,7 +82,11 @@ public class Control implements Initializable {
         ComboBoxID.setItems(options);
 
         countItems();
+
+
     }
+
+
 
 
     public  void countItems()
@@ -170,6 +183,84 @@ public class Control implements Initializable {
         tableView.getItems();
         tableView.refresh();
         countItems();
+
+    }
+
+    public void barcharItem(ActionEvent actionEvent) {
+
+      /*      Stage newWindow = (Stage)barchar.getScene().getWindow();
+
+        Label secondLabel = new Label("barchar.fxml");
+                    StackPane secondaryLayout = new StackPane();
+        secondaryLayout.getChildren().add(secondLabel);
+
+        Scene secondScene = new Scene(secondaryLayout, 230, 100);
+
+        // New window (Stage)
+       // Stage newWindow = new Stage();
+        newWindow.setTitle("Second Stage");
+       newWindow.setScene(secondScene);
+     /*   Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getClassLoader().getResource("barchar1.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
+
+        //newWindow.setScene(new Scene(root, 850, 650));
+
+
+      //  newWindow.show();
+
+
+
+      /*  Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("barchar1.fxml"));
+        primaryStage.setTitle("List of Items");
+        primaryStage.setScene(new Scene(root, 850, 650));
+        primaryStage.show();*/
+        //--- For BarChart ---//
+        /*Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getClassLoader().getResource("barchar1.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        stage.setTitle("List of Items");
+        stage.setScene(new Scene(root, 850, 650));
+        stage.show();*/
+
+       /* XYChart.Series set1 = new XYChart.Series<>();
+
+        int[] sellInTab = new int[100];
+
+        for(int i=0; i<sellInTab.length;i++) { sellInTab[i]=0;}
+
+
+
+
+        // triBulleCroissant(trieTabSellIn);
+
+
+        for(Item i : inventory.getItems())
+        {
+            // set1.getData().add(new XYChart.Data(inventory.getItems()[i].getSellIn(),inventory.getItems().length));
+            if(i.getSellIn()>=0){
+                sellInTab[i.getSellIn()]++;
+            }
+
+            String a = Integer.toString(i.getSellIn());
+            set1.getData().add(new XYChart.Data(a, sellInTab[i.getSellIn()]));
+
+            //System.out.println(trieTabSellIn[m]);
+
+        }
+
+      /*  set1.getData().add(new XYChart.Data("3",3));
+        set1.getData().add(new XYChart.Data("2",2));
+        set1.getData().add(new XYChart.Data("1",1));*/
+
+     //   SellIn_NbItems.getData().addAll(set1);
+
 
     }
 }
