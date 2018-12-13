@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
@@ -16,7 +18,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane alignment="CENTER" hgap="10.0" prefHeight="727.0" prefWidth="836.0" vgap="10.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.insightr.gildedrose.Control">
+<GridPane alignment="CENTER" hgap="10.0" prefHeight="727.0" prefWidth="836.0" vgap="10.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.insightr.gildedrose.Control">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
@@ -40,34 +42,45 @@
     <HBox alignment="bottom_right" spacing="10" GridPane.rowIndex="3">
         <ComboBox fx:id="ComboBoxID" prefHeight="27.0" prefWidth="214.0" promptText="Inventory">
             <items>
-                
+
             </items>
         </ComboBox>
         <TextField fx:id="SellIn" prefHeight="27.0" prefWidth="67.0" promptText="SellIn" />
         <TextField fx:id="Quality" prefHeight="27.0" prefWidth="63.0" promptText="Quality" />
-        <Button onAction="#addItem" text="Add" textFill="#3154ed" />
+        <Button onAction="#addItem" prefHeight="27.0" prefWidth="30.0" text="Add" textFill="#3154ed" />
     </HBox>
-     <Button onAction="#updateItem" text="Update" textFill="#3154ed" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-   <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="31.0" prefWidth="368.0" text="GildedRoseJavaKata" textAlignment="CENTER" textFill="#3154ed">
-      <font>
-         <Font name="Arial Narrow Italic" size="37.0" />
-      </font>
-   </Label>
-   <Button mnemonicParsing="false" onAction="#loadItems" text="Load" textFill="#3154ed" GridPane.columnIndex="1" />
+    <Button onAction="#updateItem" prefHeight="27.0" prefWidth="12.0" text="Update" textFill="#3154ed" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="31.0" prefWidth="368.0" text="GildedRoseJavaKata" textAlignment="CENTER" textFill="#3154ed">
+        <font>
+            <Font name="Arial Narrow Italic" size="20.0" />
+        </font>
+    </Label>
+    <Button mnemonicParsing="false" onAction="#loadItems" text="Load" textFill="#3154ed" GridPane.columnIndex="1" />
     <PieChart fx:id="pieChart" title="PieChart" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-   <Button fx:id="barchar" layoutX="450.0" layoutY="609.0" onAction="#barcharItem" text="barchar" textFill="#3154ed" GridPane.columnIndex="2" />
-   <cursor>
-      <Cursor fx:constant="DEFAULT" />
-   </cursor>
-   <columnConstraints>
-      <ColumnConstraints maxWidth="465.0" minWidth="337.0" prefWidth="410.0" />
-      <ColumnConstraints maxWidth="124.0" minWidth="0.0" prefWidth="55.0" />
-      <ColumnConstraints maxWidth="428.0" minWidth="311.0" prefWidth="311.0" />
-   </columnConstraints>
-   <rowConstraints>
-      <RowConstraints />
-      <RowConstraints />
-      <RowConstraints />
-      <RowConstraints />
-   </rowConstraints>
+    <BarChart  fx:id="SellIn_NbItems" prefHeight="155.0" prefWidth="410.0" GridPane.rowIndex="6">
+        <xAxis>
+            <CategoryAxis fx:id="sellIn" autoRanging="true" label="SellIn" side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+            <NumberAxis fx:id="y" label="Nb Items" side="LEFT" />
+        </yAxis>
+    </BarChart>
+    <cursor>
+        <Cursor fx:constant="DEFAULT" />
+    </cursor>
+    <columnConstraints>
+        <ColumnConstraints maxWidth="465.0" minWidth="337.0" prefWidth="410.0" />
+        <ColumnConstraints maxWidth="124.0" minWidth="0.0" prefWidth="55.0" />
+        <ColumnConstraints maxWidth="428.0" minWidth="311.0" prefWidth="311.0" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints maxHeight="56.0" minHeight="0.0" prefHeight="31.0" />
+        <RowConstraints maxHeight="60.0" minHeight="4.0" prefHeight="29.0" />
+        <RowConstraints />
+        <RowConstraints />
+        <RowConstraints />
+        <RowConstraints />
+        <RowConstraints />
+    </rowConstraints>
 </GridPane>
+
