@@ -1,11 +1,21 @@
 package edu.insightr.gildedrose;
 
+import java.time.LocalDate;
+
 public class Item {
 
     private String name;
     private int sellIn;
-
     private int quality;
+
+
+
+
+    private LocalDate purchaseDate;
+    private LocalDate sellingDate;
+
+
+
 
     public Item(){}
     public Item(String name, int sellIn, int quality) {
@@ -13,6 +23,9 @@ public class Item {
         this.name = name;
         this.sellIn = sellIn;
         this.quality = quality;
+        this.purchaseDate = LocalDate.now();
+        this.sellingDate=null;
+
     }
 
 
@@ -39,6 +52,24 @@ public class Item {
 
     public void setQuality(int quality) {
         this.quality = quality;
+    }
+
+
+    public LocalDate getPurchaseDate() {
+        return purchaseDate;
+
+    }
+
+    public void setPurchaseDate(LocalDate purchaseDate) {
+        this.purchaseDate = purchaseDate;
+    }
+
+    public LocalDate getSellingDate() {
+        return sellingDate;
+    }
+
+    public void setSellingDate(LocalDate sellingDate) {
+        this.sellingDate = sellingDate;
     }
 
     @Override
