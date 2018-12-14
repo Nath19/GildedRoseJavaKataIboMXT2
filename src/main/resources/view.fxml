@@ -65,6 +65,18 @@
             <NumberAxis fx:id="y" label="Nb Items" side="LEFT" />
         </yAxis>
     </BarChart>
+
+
+
+    <BarChart  fx:id="dateItem" prefHeight="155.0" prefWidth="410.0" GridPane.rowIndex="6" GridPane.columnIndex="2">
+        <xAxis>
+            <CategoryAxis fx:id="date" autoRanging="true" label="DateItem" side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+            <NumberAxis fx:id="y2" label="Nb Items" side="LEFT" />
+        </yAxis>
+    </BarChart>
+
     <cursor>
         <Cursor fx:constant="DEFAULT" />
     </cursor>
