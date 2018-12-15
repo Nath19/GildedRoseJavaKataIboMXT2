@@ -37,7 +37,8 @@
             <TableColumn fx:id="qualityColumn" minWidth="4.0" prefWidth="93.0" text="Quality">
                 <cellValueFactory><PropertyValueFactory property="quality" /> </cellValueFactory>
             </TableColumn>
-            <TableColumn fx:id="sell" prefWidth="117.0" text="Sell">
+            <TableColumn fx:id="sellColumn" prefWidth="117.0" text="Sell">
+                <cellValueFactory><PropertyValueFactory property="sell" /> </cellValueFactory>
             </TableColumn>
         </columns>
     </TableView>

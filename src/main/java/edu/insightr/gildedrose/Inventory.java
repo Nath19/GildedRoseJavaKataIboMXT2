@@ -140,6 +140,35 @@ public class Inventory {
 
     }
 
+    public Item[] delete(Item item)
+    {
+        int capteur=0;
+        Item[] newItems = new Item[items.length-1];
+        for(int i=0;i<items.length;i++)
+        {
+            if(items[i].isEqual(item)==1)
+            {
+                capteur=i;
+
+            }
+        }
+        for(int i=0;i<capteur;i++)
+        {
+            newItems[i]=items[i];
+        }
+        for(int i=capteur+1;i<items.length;i++)
+        {
+            newItems[i-1]=items[i];
+        }
+        return newItems;
+
+    }
+
+
+
+
+
+
     public static void main(String[] args) {
         Inventory inventory = new Inventory();
         for (int i = 0; i < 10; i++) {

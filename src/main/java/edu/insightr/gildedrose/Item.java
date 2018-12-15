@@ -1,5 +1,7 @@
 package edu.insightr.gildedrose;
 
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import java.time.LocalDate;
 
 public class Item {
@@ -16,6 +18,12 @@ public class Item {
 
 
 
+    @FXML
+
+    private Button sell;
+
+
+
 
     public Item(){}
     public Item(String name, int sellIn, int quality) {
@@ -25,6 +33,7 @@ public class Item {
         this.quality = quality;
         this.purchaseDate = LocalDate.now();
         this.sellingDate=null;
+        this.sell=new Button("Sell");
 
     }
 
@@ -55,6 +64,10 @@ public class Item {
     }
 
 
+    public Button getSell() {
+        return sell;
+    }
+
     public LocalDate getPurchaseDate() {
         return purchaseDate;
 
@@ -70,6 +83,17 @@ public class Item {
 
     public void setSellingDate(LocalDate sellingDate) {
         this.sellingDate = sellingDate;
+    }
+
+
+    public int isEqual(Item item)
+    {
+
+        if(item.name.equals(name) && item.sellIn==sellIn && item.quality==quality && item.purchaseDate.equals(purchaseDate) )
+        {
+            return 1;
+        }
+        return 0;
     }
 
     @Override

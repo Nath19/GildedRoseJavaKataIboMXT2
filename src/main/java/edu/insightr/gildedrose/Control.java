@@ -86,6 +86,24 @@ public class Control implements Initializable {
         ObservableList<Item> data = FXCollections.observableArrayList(inventory.getItems());
         tableView.setItems(data);
 
+
+        for(int i=0;i<inventory.getItems().length;i++)
+        {
+            int value=i;
+            inventory.getItems()[i].getSell().setOnAction(event->
+            {
+                inventory=new Inventory(inventory.delete(inventory.getItems()[value]));
+                tableView.getItems().setAll(inventory.getItems());
+                tableView.getItems();
+                tableView.refresh();
+                countItems();
+                barcharItem();
+                barcharItem2();
+
+            });
+        }
+
+
         //ObservableList<String>listItem= FXCollections.observableArrayList("");
         ObservableList<String> options =
                 FXCollections.observableArrayList("+5 Dexterity Vest",
@@ -98,10 +116,12 @@ public class Control implements Initializable {
 
         ComboBoxID.setValue("Item");
         ComboBoxID.setItems(options);
+        System.out.println("Hello les schtoupfs");
 
         countItems();
         barcharItem();
         barcharItem2();
+
 
     }
 
@@ -153,6 +173,8 @@ public class Control implements Initializable {
         tableView.getItems().setAll(inventory.getItems());
         tableView.getItems();
         tableView.refresh();
+        System.out.println("Hello les schtoupfs");
+
         countItems();
         barcharItem();
         barcharItem2();
