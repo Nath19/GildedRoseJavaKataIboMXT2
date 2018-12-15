@@ -42,6 +42,8 @@ public class Control implements Initializable {
     @FXML
     private TableView<Item> tableView;
 
+    @FXML private TableColumn<Item, String> sellIns;
+
     @FXML private ComboBox ComboBoxID;
 
     @FXML private TextField SellIn;
@@ -51,6 +53,9 @@ public class Control implements Initializable {
     @FXML private PieChart pieChart;
 
     @FXML private Button barchar;
+
+    @FXML private TextField sell_In;
+
 
 
     // Barchar
