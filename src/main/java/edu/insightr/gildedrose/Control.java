@@ -58,25 +58,6 @@ public class Control implements Initializable {
         ObservableList<Item> data = FXCollections.observableArrayList(inventory.getItems());
         tableView.setItems(data);
 
-
-        for(int i=0;i<inventory.getItems().length;i++)
-        {
-            int value=i;
-            inventory.getItems()[i].getSell().setOnAction(event->
-            {
-                inventory=new Inventory(inventory.delete(inventory.getItems()[value]));
-                tableView.getItems().setAll(inventory.getItems());
-                tableView.getItems();
-                tableView.refresh();
-                countItems();
-                barcharItem();
-                barcharItem2();
-
-            });
-        }
-
-
-        //ObservableList<String>listItem= FXCollections.observableArrayList("");
         ObservableList<String> options =
                 FXCollections.observableArrayList("+5 Dexterity Vest",
                         "Aged Brie",
@@ -89,15 +70,13 @@ public class Control implements Initializable {
         ComboBoxID.setValue("Item");
         ComboBoxID.setItems(options);
 
+        refreshSellButtons();
         countItems();
         barcharItem();
         barcharItem2();
-
-
     }
 
-    public  void countItems()
-    {
+    public void countItems() {
         int[] tab = inventory.count();
         ObservableList<PieChart.Data> pieChartData =
                 FXCollections.observableArrayList(
@@ -113,9 +92,25 @@ public class Control implements Initializable {
         pieChart.setLabelLineLength(10);
     }
 
+    public void refreshSellButtons(){
+        for(int i=0;i<inventory.getItems().length;i++)
+        {
+            int value=i;
+            inventory.getItems()[i].getSell().setOnAction(event->
+            {
+                inventory=new Inventory(inventory.delete(inventory.getItems()[value]));
+                tableView.getItems().setAll(inventory.getItems());
+                tableView.getItems();
+                tableView.refresh();
+                countItems();
+                barcharItem();
+                barcharItem2();
+
+            });
+        }
+    }
 
     public void addItem(ActionEvent actionEvent) {
-
         String name_value=ComboBoxID.getValue().toString();
         int sellIn_value=Integer.parseInt(SellIn.getText());
         int quality_value=Integer.parseInt(Quality.getText());
@@ -138,17 +133,15 @@ public class Control implements Initializable {
         tableView.getItems().setAll(inventory.getItems());
         tableView.getItems();
         tableView.refresh();
-
+        refreshSellButtons();
         countItems();
         barcharItem();
         barcharItem2();
     }
 
     public void updateItem(ActionEvent actionEvent) {
-
         inventory.updateQuality();
         tableView.refresh();
-
     }
 
     public void loadItems(ActionEvent actionEvent) {
@@ -184,6 +177,7 @@ public class Control implements Initializable {
             tableView.getItems().setAll(inventory.getItems());
             tableView.getItems();
             tableView.refresh();
+            refreshSellButtons();
             countItems();
             barcharItem();
             barcharItem2();

@@ -20,6 +20,7 @@ public class Item {
         this.sellingDate=null;
         this.sell=new Button("Sell");
     }
+
     public Item(String name, int sellIn, int quality) {
         super();
         this.name = name;
