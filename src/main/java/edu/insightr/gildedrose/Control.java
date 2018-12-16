@@ -1,48 +1,30 @@
 package edu.insightr.gildedrose;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.chart.*;
 import javafx.scene.control.*;
-import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.fxml.FXMLLoader;
+
+import java.io.BufferedReader;
 import java.io.File;
-import java.io.IOException;
+import java.io.FileReader;
 import java.net.URL;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
-import java.util.List;
 import java.util.ResourceBundle;
-import javafx.scene.Scene;
 
 public class Control implements Initializable {
 
     private Inventory inventory;
 
-    //============ Used for test ============
-    private Item itemToAdd;
-    public Inventory getInventory() {
-        return inventory;
-    }
-    public Item getItemToAdd() {
-        return itemToAdd;
-    }
-    //
+    @FXML private TableView<Item> tableView;
 
-
-    @FXML
-    private TableView<Item> tableView;
-
-    @FXML private TableColumn<Item, String> sellIns;
+    //@FXML private TableColumn<Item, String> sellIns;
 
     @FXML private ComboBox ComboBoxID;
 
@@ -52,31 +34,21 @@ public class Control implements Initializable {
 
     @FXML private PieChart pieChart;
 
-    @FXML private Button barchar;
+    //@FXML private transient Button barchar;
 
-    @FXML private TextField sell_In;
+    //@FXML private TextField sell_In;
 
+    @FXML private BarChart<?,?> SellIn_NbItems;
 
+    //@FXML private CategoryAxis sellIn;
 
-    // Barchar
+    //@FXML private NumberAxis y;
 
-    @FXML
-    private BarChart<?,?> SellIn_NbItems;
+    @FXML private BarChart<?,?> dateItem;
 
-    @FXML
-    private CategoryAxis sellIn;
+    //@FXML private CategoryAxis date;
 
-    @FXML
-    private NumberAxis y;
-
-    @FXML
-    private BarChart<?,?> dateItem;
-
-    @FXML
-    private CategoryAxis date;
-
-    @FXML
-    private NumberAxis y2;
+    //@FXML private NumberAxis y2;
 
 
 
@@ -116,7 +88,6 @@ public class Control implements Initializable {
 
         ComboBoxID.setValue("Item");
         ComboBoxID.setItems(options);
-        System.out.println("Hello les schtoupfs");
 
         countItems();
         barcharItem();
@@ -124,9 +95,6 @@ public class Control implements Initializable {
 
 
     }
-
-
-
 
     public  void countItems()
     {
@@ -149,15 +117,12 @@ public class Control implements Initializable {
     public void addItem(ActionEvent actionEvent) {
 
         String name_value=ComboBoxID.getValue().toString();
-        int sellin_value=Integer.parseInt(SellIn.getText());
-        int quallity_value=Integer.parseInt(Quality.getText());
+        int sellIn_value=Integer.parseInt(SellIn.getText());
+        int quality_value=Integer.parseInt(Quality.getText());
 
-
-        Item nouveau=new Item(name_value,sellin_value,quallity_value);
-        itemToAdd = nouveau;
+        Item nouveau=new Item(name_value,sellIn_value,quality_value);
 
         Item[] items = new Item[inventory.getItems().length+1];
-
 
         int i=0;
         while(i<inventory.getItems().length)
@@ -173,17 +138,12 @@ public class Control implements Initializable {
         tableView.getItems().setAll(inventory.getItems());
         tableView.getItems();
         tableView.refresh();
-        System.out.println("Hello les schtoupfs");
 
         countItems();
         barcharItem();
         barcharItem2();
     }
 
-
-
-
-    @FXML
     public void updateItem(ActionEvent actionEvent) {
 
         inventory.updateQuality();
@@ -199,45 +159,48 @@ public class Control implements Initializable {
                 new FileChooser.ExtensionFilter("Json", "*.json"));
         File json = fileChooser.showOpenDialog(stage);
 
-        ObjectMapper mapper = new ObjectMapper();
-        List<Item> cricketer = null;
-        try {
-            cricketer = mapper.readValue(json, new TypeReference<List<Item>>() { });
-        } catch (IOException e) {
-            e.printStackTrace();
+        Gson gson = new Gson();
+        String content = "";
+
+        try{
+            BufferedReader bfR = new BufferedReader(new FileReader(json));
+            String line;
+            while((line = bfR.readLine()) != null){
+                content += line;
+            }
+            Item[] items = gson.fromJson(content, Item[].class);
+
+            Item[] finalInventory = new Item[inventory.getItems().length + items.length];
+            int index = 0;
+            for(Item i : inventory.getItems()){
+                finalInventory[index] = i;
+                index++;
+            }
+            for(Item i : items){
+                finalInventory[index] = i;
+                index++;
+            }
+            inventory.setItems(finalInventory);
+            tableView.getItems().setAll(inventory.getItems());
+            tableView.getItems();
+            tableView.refresh();
+            countItems();
+            barcharItem();
+            barcharItem2();
         }
-
-        Item[] items = new Item[inventory.getItems().length];
-
-        System.out.println("Java object created from JSON String :");
-        //System.out.println(cricketer);
-        int j=0;
-        for(Item i : cricketer){
-            items[j]=i;
-            j++;
-            System.out.println(i);
-            // Used to try to fix the get.Name issue.
-            if(i.getName() == "Sulfuras, Hand of Ragnaros") System.out.println("test");
+        catch(Exception e){
+            System.out.println(e);
         }
-
-        inventory= new Inventory(items);
-        tableView.getItems().setAll(inventory.getItems());
-        tableView.getItems();
-        tableView.refresh();
-        countItems();
 
     }
 
     public void barcharItem()
     {
-
         XYChart.Series set1 = new XYChart.Series<>();
 
         int[] sellInTab = new int[100];
 
         for(int i=0; i<sellInTab.length;i++) { sellInTab[i]=0;}
-
-
 
         for(Item i : inventory.getItems())
         {
@@ -247,12 +210,11 @@ public class Control implements Initializable {
             }
 
             String a = Integer.toString(i.getSellIn());
-            set1.getData().add(new XYChart.Data(a, sellInTab[i.getSellIn()]));
-
+            int sellIn = i.getSellIn();
+            if(sellIn < 0) sellIn = 0;
+            set1.getData().add(new XYChart.Data(a, sellInTab[sellIn]));
 
         }
-
-
 
         SellIn_NbItems.getData().addAll(set1);
         tableView.refresh();
@@ -262,10 +224,7 @@ public class Control implements Initializable {
 
     public void barcharItem2()
     {
-
         XYChart.Series set1 = new XYChart.Series<>();
-
-
 
         int[] sellInTab = new int[100];
 
@@ -274,42 +233,31 @@ public class Control implements Initializable {
         int ind=0;
         int dif=0;
         boolean different=false;
-for (Item j : inventory.getItems()) {
-    for (Item i : inventory.getItems()) {
+        for (Item j : inventory.getItems()) {
+            for (Item i : inventory.getItems()) {
         // set1.getData().add(new XYChart.Data(inventory.getItems()[i].getSellIn(),inventory.getItems().length));
-        if (i.getPurchaseDate() != (j).getPurchaseDate())
-        {
-            ind++;
-            sellInTab[ind]++;
-            ind--;
-        }else
-        {
+                if (i.getPurchaseDate() != (j).getPurchaseDate())
+                {
+                    ind++;
+                    sellInTab[ind]++;
+                    ind--;
+                }else
+                 {
+                     sellInTab[ind]++;
+                 }
 
-            sellInTab[ind]++;
+                 LocalDate date = i.getPurchaseDate();
+                // DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd mm yyyy");
+                //   String formattedString = date.format(formatter);
+                //String a = Integer.toString(i.getPurchaseDate());
+                set1.getData().add(new XYChart.Data(date.toString(), sellInTab[ind]));
+                //   set2.getData().add(new XYChart.Data(date.toString(), sellInTab[dif]));
+            }
         }
-
-
-
-
-        LocalDate date = i.getPurchaseDate();
-
-        // DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd mm yyyy");
-        //   String formattedString = date.format(formatter);
-        //String a = Integer.toString(i.getPurchaseDate());
-        set1.getData().add(new XYChart.Data(date.toString(), sellInTab[ind]));
-     //   set2.getData().add(new XYChart.Data(date.toString(), sellInTab[dif]));
-
-
-    }
-}
-
-
         dateItem.getData().addAll(set1);
      //   dateItem.getData().addAll(set2);
 
         tableView.refresh();
 
     }
-
-
 }

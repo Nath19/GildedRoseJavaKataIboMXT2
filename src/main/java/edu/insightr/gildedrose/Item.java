@@ -10,22 +10,16 @@ public class Item {
     private int sellIn;
     private int quality;
 
-
-
-
     private LocalDate purchaseDate;
     private LocalDate sellingDate;
 
+    @FXML private transient Button sell;
 
-
-    @FXML
-
-    private Button sell;
-
-
-
-
-    public Item(){}
+    public Item(){
+        this.purchaseDate = LocalDate.now();
+        this.sellingDate=null;
+        this.sell=new Button("Sell");
+    }
     public Item(String name, int sellIn, int quality) {
         super();
         this.name = name;

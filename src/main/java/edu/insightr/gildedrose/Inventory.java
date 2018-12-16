@@ -3,6 +3,9 @@ package edu.insightr.gildedrose;
 public class Inventory {
 
 
+    public void setItems(Item[] items) {
+        this.items = items;
+    }
 
     private Item[] items;
 
@@ -102,27 +105,27 @@ public class Inventory {
 
         for(int i=0;i<items.length;i++)
         {
-            if (items[i].getName().contains("+5 Dexterity Vest"))
+            if (items[i].getName() == "+5 Dexterity Vest")
             {
                 tab[0]++;
             }
-            if(items[i].getName().contains("Aged Brie"))
+            if(items[i].getName() == "Aged Brie")
             {
                 tab[1]++;
             }
-            if(items[i].getName().contains("Elixir of the Mongoose"))
+            if(items[i].getName() == "Elixir of the Mongoose")
             {
                 tab[2]++;
             }
-            if(items[i].getName().contains("Sulfuras, Hand of Ragnaros"))
+            if(items[i].getName() == "Sulfuras, Hand of Ragnaros")
             {
                 tab[3]++;
             }
-            if(items[i].getName().contains("Backstage passes to a TAFKAL80ETC concert"))
+            if(items[i].getName() == "Backstage passes to a TAFKAL80ETC concert")
             {
                 tab[4]++;
             }
-            if(items[i].getName().contains("Conjured Mana Cake"))
+            if(items[i].getName() == "Conjured Mana Cake")
             {
                 tab[5]++;
             }

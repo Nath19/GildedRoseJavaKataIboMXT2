@@ -1,11 +1,9 @@
 [
-
     {
       "name":"Sulfuras, Hand of Ragnaros",
       "sellIn":0,
       "quality":70
     },
-
     {
       "name":"Aged Brie",
       "sellIn":2,
@@ -31,5 +29,4 @@
       "sellIn":3,
       "quality":6
     }
-
 ]
