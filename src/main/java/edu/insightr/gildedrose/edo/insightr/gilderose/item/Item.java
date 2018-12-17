@@ -1,4 +1,4 @@
-package edu.insightr.gildedrose;
+package edu.insightr.gildedrose.edo.insightr.gilderose.item;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -31,7 +31,16 @@ public class Item {
         this.sell=new Button("Sell");
 
     }
+    public Item(String name, int sellIn, int quality, LocalDate date) {
+        super();
+        this.name = name;
+        this.sellIn = sellIn;
+        this.quality = quality;
+        this.purchaseDate = date;
+        this.sellingDate=null;
+        this.sell=new Button("Sell");
 
+    }
 
 
     public String getName() {

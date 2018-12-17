@@ -1,4 +1,4 @@
-package edu.insightr.gildedrose;
+package edu.insightr.gildedrose.edu.insightr.gildedrose.ctr.main;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

@@ -1,4 +1,7 @@
-package edu.insightr.gildedrose;
+package edu.insightr.gildedrose.edo.insightr.gilderose.item;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Inventory {
 
@@ -14,11 +17,16 @@ public class Inventory {
         this.items = items;
     }
 
+
+    String myDayString = "18 05 2014";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MM yyyy");
+    LocalDate myDayLocalDate = LocalDate.parse(myDayString, formatter);
+
     public Inventory() {
         super();
         items = new Item[]{
                 new Item("+5 Dexterity Vest", 10, 20),
-                new Item("+5 Dexterity Vest", 10, 20),
+                new Item("+5 Dexterity Vest", 10, 20,myDayLocalDate),
                 new Item("Aged Brie", 2, 0),
                 new Item("Elixir of the Mongoose", 5, 7),
                 new Item("Sulfuras, Hand of Ragnaros", 0, 80),

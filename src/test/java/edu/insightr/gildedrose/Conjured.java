@@ -1,4 +1,6 @@
 package edu.insightr.gildedrose;
+import edu.insightr.gildedrose.edo.insightr.gilderose.item.Inventory;
+import edu.insightr.gildedrose.edo.insightr.gilderose.item.Item;
 import org.junit.jupiter.api.Test;
 
  //import static org.hamcrest.CoreMatchers.is;

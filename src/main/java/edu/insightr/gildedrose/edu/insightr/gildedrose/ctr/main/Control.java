@@ -1,6 +1,8 @@
-package edu.insightr.gildedrose;
+package edu.insightr.gildedrose.edu.insightr.gildedrose.ctr.main;
 
 import com.google.gson.Gson;
+import edu.insightr.gildedrose.edo.insightr.gilderose.item.Inventory;
+import edu.insightr.gildedrose.edo.insightr.gilderose.item.Item;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,6 +18,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.LinkedList;
 import java.util.ResourceBundle;
 
 public class Control implements Initializable {
@@ -73,7 +76,8 @@ public class Control implements Initializable {
         refreshSellButtons();
         countItems();
         barcharItem();
-        barcharItem2();
+      //  barcharItem2();
+        LocalDateCount();
     }
 
     public void countItems() {
@@ -104,8 +108,8 @@ public class Control implements Initializable {
                 tableView.refresh();
                 countItems();
                 barcharItem();
-                barcharItem2();
-
+             //   barcharItem2();
+                LocalDateCount();
             });
         }
     }
@@ -136,7 +140,8 @@ public class Control implements Initializable {
         refreshSellButtons();
         countItems();
         barcharItem();
-        barcharItem2();
+       // barcharItem2();
+        LocalDateCount();
     }
 
     public void updateItem(ActionEvent actionEvent) {
@@ -214,10 +219,87 @@ public class Control implements Initializable {
         tableView.refresh();
 
     }
+public LinkedList<LocalDate> presenceDate() {
+    LinkedList<LocalDate> count = new LinkedList<>();
+
+
+    for (int i = 0; i < inventory.getItems().length; i++) {
+        boolean presence = false;
+        for (int j = 0; j < count.size(); j++) {
+
+            if (inventory.getItems()[i].getPurchaseDate().compareTo(count.get(j)) == 0) {
+                presence = true;
+                break;
+
+
+            }
+
+
+        }
+        if (presence == false) {
+
+            count.add(inventory.getItems()[i].getPurchaseDate());
+
+        }
+
+    }
+    return count;
+}
+
+
+
+public void LocalDateCount()
+{
+    XYChart.Series set1 = new XYChart.Series<>();
+    LinkedList<LocalDate> count = presenceDate();
+    LocalDate[] tab1= new LocalDate[count.size()];
+    int[] tab2=new int [count.size()];
+    for (int i=0;i<count.size();i++)
+    {
+        tab1[i]=count.get(i);
+        System.out.println(tab1[i]);
+    }
+
+
+for (int i=0;i<inventory.getItems().length;i++)
+{
+
+
+    for (int j=0;j<tab2.length;j++)
+    {
+        if(tab1[j].compareTo(inventory.getItems()[i].getPurchaseDate())==0)
+        {
+
+            tab2[j]++;
+            break;
+        }
+        System.out.println(tab2[j]);
+    }
+
+}
+
+for (int i=0;i<count.size();i++)
+{
+
+    set1.getData().add(new XYChart.Data(tab1[i].toString(), tab2[i]));
+
+
+
+}
+
+
+   dateItem.getData().addAll(set1);
+    //   dateItem.getData().addAll(set2);
+
+    tableView.refresh();
+}
+
+
 
 
     public void barcharItem2()
     {
+        LocalDateCount();
         XYChart.Series set1 = new XYChart.Series<>();
 
         int[] sellInTab = new int[100];

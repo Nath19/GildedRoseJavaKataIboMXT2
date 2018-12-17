@@ -1,5 +1,7 @@
 package edu.insightr.gildedrose;
 
+import edu.insightr.gildedrose.edo.insightr.gilderose.item.Inventory;
+import edu.insightr.gildedrose.edo.insightr.gilderose.item.Item;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -8,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class InventoryTest {
 
-    protected  Inventory inv;
+    protected Inventory inv;
     Item[]ancienneListeDesItems;
     @BeforeEach
     void setUp() {
