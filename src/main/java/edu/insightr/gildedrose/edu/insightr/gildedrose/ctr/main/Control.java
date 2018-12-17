@@ -146,6 +146,7 @@ public class Control implements Initializable {
 
     public void updateItem(ActionEvent actionEvent) {
         inventory.updateQuality();
+        barcharItem();
         tableView.refresh();
     }
 
@@ -185,7 +186,7 @@ public class Control implements Initializable {
             refreshSellButtons();
             countItems();
             barcharItem();
-            barcharItem2();
+            LocalDateCount();
         }
         catch(Exception e){
             System.out.println(e);
@@ -195,6 +196,7 @@ public class Control implements Initializable {
 
     public void barcharItem()
     {
+        SellIn_NbItems.getData().clear();
         XYChart.Series set1 = new XYChart.Series<>();
 
         int[] sellInTab = new int[100];
@@ -250,6 +252,7 @@ public LinkedList<LocalDate> presenceDate() {
 
 public void LocalDateCount()
 {
+    dateItem.getData().clear();
     XYChart.Series set1 = new XYChart.Series<>();
     LinkedList<LocalDate> count = presenceDate();
     LocalDate[] tab1= new LocalDate[count.size()];
@@ -297,43 +300,5 @@ for (int i=0;i<count.size();i++)
 
 
 
-    public void barcharItem2()
-    {
-        LocalDateCount();
-        XYChart.Series set1 = new XYChart.Series<>();
 
-        int[] sellInTab = new int[100];
-
-        for(int i=0; i<sellInTab.length;i++) { sellInTab[i]=0;}
-
-        int ind=0;
-        int dif=0;
-        boolean different=false;
-        for (Item j : inventory.getItems()) {
-            for (Item i : inventory.getItems()) {
-        // set1.getData().add(new XYChart.Data(inventory.getItems()[i].getSellIn(),inventory.getItems().length));
-                if (i.getPurchaseDate() != (j).getPurchaseDate())
-                {
-                    ind++;
-                    sellInTab[ind]++;
-                    ind--;
-                }else
-                 {
-                     sellInTab[ind]++;
-                 }
-
-                 LocalDate date = i.getPurchaseDate();
-                // DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd mm yyyy");
-                //   String formattedString = date.format(formatter);
-                //String a = Integer.toString(i.getPurchaseDate());
-                set1.getData().add(new XYChart.Data(date.toString(), sellInTab[ind]));
-                //   set2.getData().add(new XYChart.Data(date.toString(), sellInTab[dif]));
-            }
-        }
-        dateItem.getData().addAll(set1);
-     //   dateItem.getData().addAll(set2);
-
-        tableView.refresh();
-
-    }
 }
