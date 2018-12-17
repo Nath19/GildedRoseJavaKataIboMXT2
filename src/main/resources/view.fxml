@@ -44,14 +44,13 @@
     </TableView>
     <HBox alignment="bottom_right" spacing="10" GridPane.rowIndex="1" />
     <HBox alignment="bottom_right" spacing="10" GridPane.rowIndex="3">
-        <ComboBox fx:id="ComboBoxID" prefHeight="26.0" prefWidth="173.0" promptText="Inventory">
+        <ComboBox fx:id="ComboBoxID" prefHeight="26.0" prefWidth="212.0" promptText="Inventory">
             <items>
 
             </items>
         </ComboBox>
         <TextField fx:id="SellIn" prefHeight="26.0" prefWidth="48.0" promptText="SellIn" />
         <TextField fx:id="Quality" prefHeight="26.0" prefWidth="58.0" promptText="Quality" />
-        <TextField fx:id="sell_In" prefWidth="40" promptText="SellIns" />
 
         <Button onAction="#addItem" prefHeight="26.0" prefWidth="56.0" text="Add" textFill="#3154ed" />
     </HBox>

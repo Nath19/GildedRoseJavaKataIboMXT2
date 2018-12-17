@@ -97,12 +97,12 @@ public class Control implements Initializable {
     }
 
     public void refreshSellButtons(){
-        for(int i=0;i<inventory.getItems().length;i++)
+        for(Item i : inventory.getItems())
         {
-            int value=i;
-            inventory.getItems()[i].getSell().setOnAction(event->
+            //int value=i;
+            i.getSell().setOnAction(event->
             {
-                inventory=new Inventory(inventory.delete(inventory.getItems()[value]));
+                inventory=new Inventory(inventory.delete(i));
                 tableView.getItems().setAll(inventory.getItems());
                 tableView.getItems();
                 tableView.refresh();
